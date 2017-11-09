@@ -16,6 +16,8 @@ class StopButton extends StatefulWidget {
   _StopButtonState createState() => _state; 
 }
 
+
+
 class _StopButtonState extends State<StopButton> {
   bool waiting = false;
   
@@ -27,12 +29,11 @@ class _StopButtonState extends State<StopButton> {
       running = !running;
       if waiting {
         wait(5);
-        waiting = true;
       }
     }
   }
   
-  void wait(int time) => timer = new Timer(const Duration(seconds:1), _timerFinish);
+  wait(int time) => new Timer(const Duration(seconds:time), () => waiting = false;);
   
   Widget build(BuildContext context) {
     return new MaterialButton(
