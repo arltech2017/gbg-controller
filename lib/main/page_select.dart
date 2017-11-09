@@ -1,7 +1,5 @@
+Library main;
 import 'package:flutter/material.dart';
-import 'main.dart';
-import 'control_page.dart';
-import 'bluetooth_page.dart';
 
 class PageSelect extends StatefulWidget {
   _PageSelectState _state;
