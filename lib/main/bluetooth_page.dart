@@ -1,12 +1,9 @@
+Library main;
 import 'package:flutter/material.dart';
-import 'main.dart';
-import 'page_select.dart';
 
 class BluetoothPage extends StatefulWidget {
-
   _BluetoothPageState _state;
   GoApp app;
-
   List<Widget> deviceList = new List();
 
   BluetoothPage({Key key, GoApp mainapp}) : super(key: key) {
@@ -16,11 +13,7 @@ class BluetoothPage extends StatefulWidget {
     deviceList.add(new Text("Device 2"));
   }
 
-  void addAddressToList(String address) {
-    setState(() {
-      deviceList.add(new Text(address));
-    });
-  }
+  void addAddressToList(String address) => setState( () => deviceList.add(new Text(address)); );
 
   void addAddressesToList(List<String> addresses) {
     setState(() {
@@ -35,7 +28,6 @@ class BluetoothPage extends StatefulWidget {
 }
 
 class _BluetoothPageState extends State<BluetoothPage> {
-
   @override
   Widget build(BuildContext) {
     return new Center(
