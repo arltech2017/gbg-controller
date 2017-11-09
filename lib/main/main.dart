@@ -4,9 +4,7 @@ import 'package:flutter/services.dart';
 import 'dart:async';
 import 'dart:io';
 
-void main() {
-  runApp(new GoApp(title: 'GoBabyGo'));
-}
+void main() => runApp(new GoApp(title: 'GoBabyGo'));
 
 class GoApp extends StatelessWidget {
   GoApp({this.title}) {
@@ -17,10 +15,6 @@ class GoApp extends StatelessWidget {
   static const platform = const MethodChannel('gbg.bluetooth');
   PageSelect pageSelect;
   final String title;
-
-  //Variables for executing the delay before the user can restart the car.
-  var connection;
-  var scanSubscription;
 
   @override
   Widget build(BuildContext context) {
