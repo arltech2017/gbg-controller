@@ -1,36 +1,12 @@
 library utils;
 import 'package:flutter/services.dart';
-
+import 'dart:async';
+	
 abstract class Bluetooth {
-	void init() {
-    flutterBlue = FlutterBlue.instance;
-  }
-
-  void scanBt() {
-    callAndroid("scan");
-  }
-
-  void closeBt() {
-    callAndroid("close");
-  }
-  
-  void connect() {
-    callAndroid("connect");
-  }
-
-  void toggle() {
-    callAndroid("toggle");
-  }
-
-  Future<Null> callAndroid(String method) async {
-    try {
-      var result = await platform.invokeMethod(method);
-      print(result);
-    } on PlatformException catch (e) {
-      print("Error while connecting to android code");
-      print(e.toString());
-    }
-  }
+  scanBt() => local("scan");
+  closeBt() => local("close");
+  connect() => local("connect");
+  toggle() => local("toggle");
 
   //Connect using flutter_blue, not currently being used
   void flutterConnect() {
@@ -41,17 +17,5 @@ abstract class Bluetooth {
     scanSubscription = flutterBlue.scan().listen((scanResult) {
       print(scanResult.device.id.toString());
     });
-
-    /*print("Connecting");
-    connection = flutterBlue.connect(device).listen((result) {
-      print("Connection result:");
-      print(result);
-    });*/
-  }
-
-  //Cancels flutter_blue connections
-  void cancelBluetooth() {
-    scanSubscription.cancel();
-    //connection.cancel();
   }
 }
