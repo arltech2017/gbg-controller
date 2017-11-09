@@ -32,9 +32,7 @@ class _StopButtonState extends State<StopButton> {
     }
   }
   
-  void wait(int time) {
-    timer = new Timer(const Duration(seconds:1), _timerFinish);
-  }
+  void wait(int time) => timer = new Timer(const Duration(seconds:1), _timerFinish);
   
   Widget build(BuildContext context) {
     return new MaterialButton(
