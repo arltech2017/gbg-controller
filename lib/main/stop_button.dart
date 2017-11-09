@@ -11,17 +11,31 @@ class StopButton extends StatefulWidget {
 
   _StopButtonState _state;
   GoApp app;
-
+  
   @override
   _StopButtonState createState() => _state; 
 }
 
 class _StopButtonState extends State<StopButton> {
-  void _pressed() {
-    //DeviceIdentifier id = new DeviceIdentifier("30:AE:A4:38:7B:6A");
-    widget.app.toggle();
+  bool waiting = false;
+  
+  void _pressed() => widget.app.toggle();
+  
+  void toggleStop() {
+    if !waiting {
+      waiting =  running;
+      running = !running;
+      if waiting {
+        wait(5);
+        waiting = true;
+      }
+    }
   }
-
+  
+  void wait(int time) {
+    timer = new Timer(const Duration(seconds:1), _timerFinish);
+  }
+  
   Widget build(BuildContext context) {
     return new MaterialButton(
         child: new Text('Toggle',
