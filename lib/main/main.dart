@@ -1,11 +1,8 @@
+Library main
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'dart:async';
 import 'dart:io';
-import 'stop_button.dart';
-import 'control_page.dart';
-import 'page_select.dart';
-import 'package:flutter_blue/flutter_blue.dart';
-import 'package:flutter/services.dart';
 
 void main() {
   runApp(new GoApp(title: 'GoBabyGo'));
@@ -47,59 +44,6 @@ class GoApp extends StatelessWidget {
     }
   }
   
-  void init() {
-    flutterBlue = FlutterBlue.instance;
-  }
-
-  void scanBt() {
-    callAndroid("scan");
-  }
-
-  void closeBt() {
-    callAndroid("close");
-  }
-  
-  void connect() {
-    callAndroid("connect");
-  }
-
-  void toggle() {
-    callAndroid("toggle");
-  }
-
-  Future<Null> callAndroid(String method) async {
-    try {
-      var result = await platform.invokeMethod(method);
-      print(result);
-    } on PlatformException catch (e) {
-      print("Error while connecting to android code");
-      print(e.toString());
-    }
-  }
-
-  //Connect using flutter_blue, not currently being used
-  void flutterConnect() {
-    DeviceIdentifier id = new DeviceIdentifier("B8:27:EB:9B:89:4E");
-    var device = new BluetoothDevice(id: id);
-
-    print("About to scan");
-    scanSubscription = flutterBlue.scan().listen((scanResult) {
-      print(scanResult.device.id.toString());
-    });
-
-    /*print("Connecting");
-    connection = flutterBlue.connect(device).listen((result) {
-      print("Connection result:");
-      print(result);
-    });*/
-  }
-
-  //Cancels flutter_blue connections
-  void cancelBluetooth() {
-    scanSubscription.cancel();
-    //connection.cancel();
-  }
-
   void _startTimer() {
     timer = new Timer(const Duration(seconds:1), _timerFinish);
   }
