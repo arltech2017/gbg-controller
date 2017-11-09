@@ -9,65 +9,45 @@ class ControlPage extends StatefulWidget {
     _state = new _ControlPageState(mainapp);
   } 
 
-  _ControlPageState _state;
+  ControlPageState state;
   GoApp app;
 
-  void conn() {
-    _state.bluetoothConnection();
-  }
+  conn() => _state.bluetoothConnection();
 
-  void updateState() {
-    _state.updateState();
-  }
+  updateState() => _state.updateState();
 
-  void setText(String s)
-  {
-    _state.setText(s);
-  }
+  setText(String s) => _state.setText(s);
+  
   @override
   _ControlPageState createState() => _state;
 }
 
 class _ControlPageState extends State<ControlPage> {
-
-  StopButton stopButton;
-
+  
   /*The variables that the page uses to display it's content.
     These are updated to match the ones in GoApp. These exist
     because when first initializing the widgets, this class
     cannot access GoApp, and so must have its own set of
     variables then are then updated to match GoApp's.
   */  
+  StopButton stopButton;
   String _countdownText = "";
-  bool _running;
-  int _countdown = 0;
 
-  _ControlPageState(GoApp app) {
-    stopButton = new StopButton(app);
-  }
+  _ControlPageState(GoApp app) => stopButton = new StopButton(app);
 
-  /*Updates this class' content variables to match the ones from
-    Go App.
-  */
-  void updateState() {
-    setState(() {
-      _running = widget.app.running;
-      _countdown = widget.app.countdown;
-      _countdownText = _getCountdownText();
-    });
-  }
+  //Updates this class' content variables to match the ones from Go App.
+  void updateState() => setState( () => running = widget.app.running; );
 
   /*Returns the string the page should display that tells the
     user how long until the car can be restarted. When the
     countdown is not running, it returns an empty string so
     that the user will not see any text.
   */
-  String _getCountdownText() {
-    if(widget.app.countdown == 0) {
-      return "";
-    } else {
+  String getCountdownText() {
+    if (widget.app.countdown != 0) {
       return ("You can restart the car in " + widget.app.countdown.toString() + " seconds");
     }
+    return "";
   }
 
   @override
@@ -95,4 +75,3 @@ class _ControlPageState extends State<ControlPage> {
     );
   }
 }
-
