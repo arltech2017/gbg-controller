@@ -2,14 +2,11 @@ Library main;
 import 'package:flutter/material.dart';
 
 class PageSelect extends StatefulWidget {
-  _PageSelectState _state;
-
+  PageSelectState _state;
   StatefulWidget currentPage;
   ControlPage controlPage;
   BluetoothPage bluetoothPage;
-
   bool vis = false;
-
   final String title;
   GoApp app;
 
@@ -21,14 +18,9 @@ class PageSelect extends StatefulWidget {
     currentPage = controlPage;
   }
 
-  void setPage(StatefulWidget w) {
-    _state.setState(() {
-      currentPage = w;
-    });
-  }
+  void setPage(StatefulWidget w) => _state.setState( () => currentPage = w; );
 
-  void toggle()
-  {
+  void toggle() {
     _state.setState(() {
       vis = !vis;
       if(vis) {
@@ -37,7 +29,6 @@ class PageSelect extends StatefulWidget {
         currentPage = new ControlPage(mainapp: app);
       }
     });
-    //Navigator.of(context).pushNamed('/bluetooth');
   }
 
   @override
@@ -45,7 +36,6 @@ class PageSelect extends StatefulWidget {
 }
 
 class _PageSelectState extends State<PageSelect> {
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
