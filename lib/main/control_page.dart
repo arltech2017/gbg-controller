@@ -11,9 +11,7 @@ class ControlPage extends StatefulWidget {
 
   ControlPageState state;
   GoApp app;
-
-  conn() => _state.bluetoothConnection();
-
+  
   updateState() => _state.updateState();
 
   setText(String s) => _state.setText(s);
@@ -31,12 +29,8 @@ class _ControlPageState extends State<ControlPage> {
     variables then are then updated to match GoApp's.
   */  
   StopButton stopButton;
-  String _countdownText = "";
 
   _ControlPageState(GoApp app) => stopButton = new StopButton(app);
-
-  //Updates this class' content variables to match the ones from Go App.
-  void updateState() => setState( () => running = widget.app.running; );
 
   /*Returns the string the page should display that tells the
     user how long until the car can be restarted. When the
@@ -44,8 +38,8 @@ class _ControlPageState extends State<ControlPage> {
     that the user will not see any text.
   */
   String getCountdownText() {
-    if (widget.app.countdown != 0) {
-      return ("You can restart the car in " + widget.app.countdown.toString() + " seconds");
+    if (widget.app.waiting) {
+      return ("car locked for 5 seconds");
     }
     return "";
   }
