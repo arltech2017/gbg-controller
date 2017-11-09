@@ -1,9 +1,7 @@
+Library main
 import 'package:flutter/material.dart';
-import 'main.dart';
-import 'stop_button.dart';
-import 'page_select.dart';
-import 'dart:async'; 
 import 'package:flutter/services.dart';
+import 'dart:async'; 
 
 class ControlPage extends StatefulWidget {
   ControlPage({Key key, GoApp mainapp}) : super(key: key) {
