@@ -6,23 +6,24 @@ import 'dart:async';
 class StopButton extends StatefulWidget {
   StopButton(GoApp app) {
     this.app = app;
-    _state = new _StopButtonState();
+    state = new StopButtonState();
   }
 
-  _StopButtonState _state;
+  StopButtonState state;
   GoApp app;
   
   @override
-  _StopButtonState createState() => _state; 
+  StopButtonState createState() => state; 
 }
 
 
 
-class _StopButtonState extends State<StopButton> {
+class StopButtonState extends State<StopButton> {
   bool waiting = false;
   
-  void _pressed() => widget.app.toggle();
-  
+  void pressed() => widget.app.toggle();
+  wait(int time) => new Timer(const Duration(seconds:time), () => waiting = false;);
+
   void toggleStop() {
     if !waiting {
       waiting =  running;
@@ -32,8 +33,6 @@ class _StopButtonState extends State<StopButton> {
       }
     }
   }
-  
-  wait(int time) => new Timer(const Duration(seconds:time), () => waiting = false;);
   
   Widget build(BuildContext context) {
     return new MaterialButton(
